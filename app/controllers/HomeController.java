@@ -1,7 +1,11 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.time.Instant;
+import javax.inject.Inject;
 import play.mvc.*;
+import services.DataSource;
+import services.User;
 
 //import views.html.*;  
 /**
@@ -9,6 +13,9 @@ import play.mvc.*;
  * @author myfear
  */
 public class HomeController extends Controller {
+    
+    @Inject
+    private DataSource dataSource;
 
     /**
      * An action that renders an HTML page with a welcome message. The
@@ -19,7 +26,13 @@ public class HomeController extends Controller {
      * @return
      */
     public Result index() {
-        return ok("It works!");
+        StringBuilder sb = new StringBuilder();
+        dataSource.listLastUsers()
+                .forEach((user) -> sb
+                        .append("\n").append(user.name())
+                        .append(",").append(user.timestamp())
+                );
+        return ok("It works!" + sb.toString());
     }
 
     /**
@@ -33,6 +46,7 @@ public class HomeController extends Controller {
         if (name == null) {
             return badRequest("Missing parameter [name]");
         } else {
+            dataSource.newUser(new User(name, Instant.now()));
             return ok("Hello " + name);
         }
     }
