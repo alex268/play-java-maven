@@ -45,44 +45,12 @@
             <artifactId>play-netty-server_2.11</artifactId>
             <version>${play2.version}</version>
             <scope>runtime</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-transport</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-common</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-codec</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-codec-http</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-buffer</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-handler</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- only if using Java -->
         <dependency>
             <groupId>com.typesafe.play</groupId>
             <artifactId>play-java_2.11</artifactId>
             <version>${play2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -92,13 +60,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.yandex.ydb</groupId>
-            <artifactId>ydb-sdk-auth-iam</artifactId>
-            <version>1.11.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.yandex.ydb</groupId>
-            <artifactId>ydb-sdk-table</artifactId>
+            <groupId>com.github.alex268</groupId>
+            <artifactId>ydb-java-sdk-shaded</artifactId>
             <version>1.11.5</version>
         </dependency>
     </dependencies>
@@ -120,7 +83,7 @@
             <plugin>
                 <groupId>com.google.code.play2-maven-plugin</groupId>
                 <artifactId>play2-maven-plugin</artifactId>
-                <version>1.0.0-beta5</version>
+                <version>1.0.0-rc5</version>
                 <extensions>true</extensions>
                 <configuration>
                     <!-- if using controllers without dependency injection; default value is "injected" 
@@ -132,7 +95,7 @@
             <plugin>
                 <groupId>com.google.code.sbt-compiler-maven-plugin</groupId>
                 <artifactId>sbt-compiler-maven-plugin</artifactId>
-                <version>1.0.0-beta8</version>
+                <version>1.0.0</version>
             </plugin>
             
             <plugin>
