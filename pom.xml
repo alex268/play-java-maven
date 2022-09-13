@@ -9,13 +9,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <play2.version>2.5.19</play2.version>
-        <scala.version>2.11.7</scala.version>
+        <play2.version>2.6.25</play2.version>
+        <scala.version>2.12.2</scala.version>
         <jar.plugin.version>2.6</jar.plugin.version>
 
     </properties>
     
-    <name>Play 2.5 x with Maven</name>
+    <name>Play 2.6 x with Maven</name>
 
     <dependencies>
         <dependency>
@@ -26,7 +26,13 @@
 
         <dependency>
             <groupId>com.typesafe.play</groupId>
-            <artifactId>play_2.11</artifactId>
+            <artifactId>play_2.12</artifactId>
+            <version>${play2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-guice_2.12</artifactId>
             <version>${play2.version}</version>
         </dependency>
 
@@ -34,7 +40,7 @@
         <!-- see https://www.playframework.com/documentation/2.5.x/SettingsLogger for more info -->
         <dependency>
             <groupId>com.typesafe.play</groupId>
-            <artifactId>play-logback_2.11</artifactId>
+            <artifactId>play-logback_2.12</artifactId>
             <version>${play2.version}</version>
             <scope>runtime</scope>
         </dependency>
@@ -42,14 +48,20 @@
         <!-- required for: "run", "start" and "dist" -->
         <dependency>
             <groupId>com.typesafe.play</groupId>
-            <artifactId>play-netty-server_2.11</artifactId>
+            <artifactId>play-netty-server_2.12</artifactId>
             <version>${play2.version}</version>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- only if using Java -->
         <dependency>
             <groupId>com.typesafe.play</groupId>
-            <artifactId>play-java_2.11</artifactId>
+            <artifactId>play-java_2.12</artifactId>
             <version>${play2.version}</version>
         </dependency>
 
@@ -60,9 +72,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.alex268</groupId>
-            <artifactId>ydb-java-sdk-shaded</artifactId>
-            <version>1.11.5</version>
+            <groupId>com.yandex.ydb</groupId>
+            <artifactId>ydb-sdk-table</artifactId>
+            <version>1.14.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport-native-epoll</artifactId>
+            <version>4.1.63.Final</version>
         </dependency>
     </dependencies>
 
